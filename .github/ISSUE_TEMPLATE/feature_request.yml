@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest a setting, surface, or plugin integration
+labels: [enhancement]
+body:
+  - type: textarea
+    id: request
+    attributes:
+      label: What would you like?
+      description: Describe the setting, surface treatment, or plugin integration you have in mind.
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Why?
+      description: What problem does it solve? Does it fit the machine-geometric register (squared corners, hairlines, classify labels, restrained signal color)?
+    validations:
+      required: false
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type of request
+      options:
+        - New Style Settings option
+        - Plugin integration
+        - Palette / accent
+        - Other visual change
+    validations:
+      required: true

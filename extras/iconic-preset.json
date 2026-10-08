@@ -1,0 +1,106 @@
+{
+  "biggerIcons": "desktop",
+  "clickableIcons": "desktop",
+  "showAllFileIcons": true,
+  "showAllFolderIcons": true,
+  "minimalFolderIcons": true,
+  "showMarkdownTabIcons": true,
+  "showTitleIcons": true,
+  "showTagPillIcons": true,
+  "showMenuActions": true,
+  "showSuggestionIcons": true,
+  "showQuickSwitcherIcons": true,
+  "showMoveFileIcons": true,
+  "showItemName": "desktop",
+  "useSearchKeywords": "on",
+  "maxSearchResults": 100,
+  "colorPicker1": "list",
+  "colorPicker2": "rgb",
+  "uncolorHover": false,
+  "uncolorDrag": false,
+  "uncolorSelect": false,
+  "uncolorQuick": false,
+  "maxBackups": 2,
+  "dialogState": {
+    "iconMode": true,
+    "emojiMode": false,
+    "rulePage": "file"
+  },
+  "appIcons": {
+    "close": "lucide-x",
+    "help": "lucide-book-open",
+    "maximize": "lucide-square",
+    "minimize": "lucide-panel-bottom-close",
+    "pin": "lucide-pin",
+    "settings": "lucide-sliders-vertical",
+    "sidebarLeft": "lucide-panel-left",
+    "sidebarRight": "lucide-panel-right",
+    "unmaximize": "lucide-copy"
+  },
+  "tabIcons": {
+    "audio": "lucide-mic",
+    "backlink": "lucide-import",
+    "bases": "lucide-database",
+    "bookmarks": "lucide-bookmark",
+    "canvas": "lucide-workflow",
+    "daily-notes": "lucide-calendar-days",
+    "empty": "lucide-circle-dashed",
+    "file-explorer": "lucide-folder-tree",
+    "graph": "lucide-network",
+    "image": "lucide-image",
+    "localgraph": "lucide-waypoints",
+    "markdown": "lucide-file-digit",
+    "outgoing-link": "lucide-arrow-up-right",
+    "outline": "lucide-list-tree",
+    "pdf": "lucide-book-open",
+    "properties": "lucide-braces",
+    "search": "lucide-scan-search",
+    "sync": "lucide-refresh-cw",
+    "tag": "lucide-hash",
+    "video": "lucide-video",
+    "webviewer": "lucide-globe"
+  },
+  "fileIcons": {
+    "Omnia Specimen.md": {
+      "icon": "lucide-file-digit"
+    },
+    "Welcome.md": {
+      "icon": "lucide-rocket"
+    },
+    "Workaholik.md": {
+      "icon": "lucide-square-kanban"
+    }
+  },
+  "bookmarkIcons": {},
+  "tagIcons": {
+    "machine": "lucide-cpu",
+    "diatype": "lucide-text-cursor-input",
+    "grenadier": "lucide-square"
+  },
+  "propertyIcons": {
+    "aliases": "lucide-brackets",
+    "cssclasses": "lucide-square-code",
+    "date": "lucide-calendar",
+    "priority": "lucide-flag",
+    "related": "lucide-combine",
+    "status": "lucide-list-todo",
+    "tags": "lucide-hash",
+    "type": "lucide-box",
+    "url": "lucide-link"
+  },
+  "ribbonIcons": {
+    "audio-recorder:start": "lucide-mic",
+    "canvas:new-canvas": "lucide-workflow",
+    "command-palette:open": "lucide-square-terminal",
+    "command-palette:open-command-palette": "lucide-square-terminal",
+    "daily-notes:open-today": "lucide-calendar-days",
+    "file-explorer:new-file": "lucide-file-digit",
+    "global-search:open": "lucide-scan-search",
+    "graph:open": "lucide-network",
+    "slides:preview": "lucide-play",
+    "sync:open": "lucide-refresh-cw",
+    "templates:insert-template": "lucide-layout-template"
+  },
+  "fileRules": [],
+  "folderRules": []
+}
