@@ -4,6 +4,8 @@
 
 **Omnia Ex Machina** is a machine-geometric Obsidian theme inspired by Cupertino, featuring architectural typography, squared surfaces, precision hairline dividers, and a restrained visual language. Built around Paper & Ink light mode and Graphite & Phosphor dark mode, with customizable signal accents and carefully styled workspace components.
 
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Donate-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/tuliopc23)
+
 ![Dark mode](images/dark.png)
 
 ## Install
@@ -68,6 +70,12 @@ Copy `extras/iconic-preset.json` over `.obsidian/plugins/iconic/data.json` in yo
 ## Mobile
 
 Fully responsive: callouts, Kanban, and settings surfaces adapt under `is-mobile`; the iCloud-synced vault keeps desktop and phone on the same file. Density and radius sliders are the two knobs worth touching on small screens.
+
+## Support
+
+If you enjoy Omnia Ex Machina and want to support ongoing development:
+
+<a href="https://www.buymeacoffee.com/tuliopc23" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 48px !important;width: 174px !important;" ></a>
 
 ## Credits
  
