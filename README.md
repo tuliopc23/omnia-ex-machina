@@ -2,7 +2,7 @@
 
 # Omnia Ex Machina
 
-A machine-geometric Obsidian theme. Squared corners, hairline rules, uppercase classify labels, and a single signal accent on a Paper/Ink light and Graphite/Phosphor dark palette. Built on the Cupertino chassis.
+**Omnia Ex Machina** is a machine-geometric Obsidian theme inspired by Cupertino, featuring architectural typography, squared surfaces, precision hairline dividers, and a restrained visual language. Built around Paper & Ink light mode and Graphite & Phosphor dark mode, with customizable signal accents and carefully styled workspace components.
 
 ![Dark mode](images/dark.png)
 
@@ -70,8 +70,8 @@ Copy `extras/iconic-preset.json` over `.obsidian/plugins/iconic/data.json` in yo
 Fully responsive: callouts, Kanban, and settings surfaces adapt under `is-mobile`; the iCloud-synced vault keeps desktop and phone on the same file. Density and radius sliders are the two knobs worth touching on small screens.
 
 ## Credits
-
-Built on Cupertino (MIT) — upstream chassis retained.
+ 
+Built on the [Cupertino](https://github.com/svnaxis/obsidian-cupertino) theme chassis by [Alexis C](https://github.com/svnaxis) (MIT License). Retains upstream structural foundation with custom typography, geometry, color palettes, and component styling.
 
 ## License
 
