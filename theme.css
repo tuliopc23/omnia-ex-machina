@@ -2304,6 +2304,12 @@ settings:
         type: info-text
         markdown: true
     -
+        id: omnia-support
+        title: Support Omnia Ex Machina
+        description: "If you enjoy this theme and want to support ongoing development: [Buy Me a Coffee](https://www.buymeacoffee.com/tuliopc23) ☕"
+        type: info-text
+        markdown: true
+    -
         id: omnia-typography
         title: Typography
         type: heading
@@ -2413,6 +2419,36 @@ settings:
         title: Outlined active tab
         description: Hairline outline instead of fill for the current tab.
         type: class-toggle
+    -
+        id: omnia-table-sticky-header
+        title: Sticky table headers
+        description: Keep table headers pinned at top during scroll.
+        type: class-toggle
+        default: true
+    -
+        id: omnia-table-lines
+        title: Table grid lines
+        description: Vertical hairline dividers between table columns.
+        type: class-toggle
+        default: false
+    -
+        id: omnia-table-hover
+        title: Table row scanline
+        description: Highlight hovered table rows with a subtle ledger scanline.
+        type: class-toggle
+        default: true
+    -
+        id: omnia-code-banner
+        title: Code block language banner
+        description: Technical classification badge and hairline header on code blocks.
+        type: class-toggle
+        default: true
+    -
+        id: omnia-spec-metadata
+        title: Spec-card metadata
+        description: Precision hairline container and classified tags for note properties.
+        type: class-toggle
+        default: true
     -
         id: desktop-chrome
         title: Chrome & desktop
@@ -7422,24 +7458,6 @@ body.clean-link-off .cm-link {
   margin: 2em 0;
 }
 
-/* tables — hairline grid, machine headers */
-.markdown-rendered table, .cm-table {
-  border-collapse: collapse;
-}
-.markdown-rendered th {
-  font-family: var(--omnia-font-classify);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  font-size: 0.72em;
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--text-faint);
-  background: var(--background-primary-alt);
-}
-.markdown-rendered td {
-  border-bottom: var(--border-width) solid var(--divider-color);
-}
-
 /* selection */
 ::selection {
   background: var(--text-selection);
@@ -7544,34 +7562,174 @@ body:not(.mod-macos):not(.adaptive-mode-off) .callout {
   padding-inline-start: 0.8em;
 }
 
-/* ---------- tables — ledger ---------- */
-.markdown-rendered table {
+/* ---------- tables — universal ledger & data grid ---------- */
+body {
+  --table-border-width: 1px;
+  --table-border-color: var(--divider-color);
+  --table-header-border-width: 1px;
+  --table-header-border-color: var(--text-normal);
+  --table-header-font: var(--omnia-font-classify);
+  --table-header-size: 0.68rem;
+  --table-header-weight: 500;
+  --table-header-color: var(--text-muted);
+  --table-header-background: var(--background-primary-alt);
+  --table-cell-padding-y: 0.45em;
+  --table-cell-padding-x: 0.75em;
+  --table-row-background-even: color-mix(in srgb, var(--background-primary-alt) 55%, transparent);
+  --table-row-background-hover: color-mix(in srgb, var(--color-accent) 6%, var(--background-primary-alt));
+}
+
+/* reading view & live preview table frame */
+.markdown-rendered table,
+.markdown-source-view.mod-cm6 .cm-table-widget table,
+.cm-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
   border-top: 1.5px solid var(--text-normal);
   border-bottom: 1px solid var(--text-normal);
+  margin: 1.5em 0;
 }
-.markdown-rendered th {
-  font-family: var(--omnia-font-classify);
-  font-weight: 500;
+
+.table-wrapper {
+  margin: 1em 0;
+  overflow-x: auto;
+}
+
+/* table headers — uppercase classify register */
+.markdown-rendered th,
+.markdown-source-view.mod-cm6 .cm-table-widget th,
+.cm-table th {
+  font-family: var(--table-header-font);
+  font-weight: var(--table-header-weight);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--text-normal);
-  background: var(--background-primary-alt);
-  padding: 0.55em 0.75em;
+  font-size: var(--table-header-size);
+  color: var(--table-header-color);
+  border-bottom: 1px solid var(--table-header-border-color);
+  background: var(--table-header-background);
+  padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
+  text-align: left;
+  vertical-align: bottom;
 }
-.markdown-rendered td {
-  border-bottom: var(--border-width) solid var(--divider-color);
-  padding: 0.45em 0.75em;
+
+/* sticky headers: Style Settings toggle or .table-sticky class */
+body.omnia-table-sticky-header .markdown-rendered th,
+body.omnia-table-sticky-header .markdown-source-view.mod-cm6 .cm-table-widget th,
+.table-sticky th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  box-shadow: 0 1px 0 var(--text-normal);
 }
-.markdown-rendered tbody tr:last-child td {
+
+/* table cells & tabular numerals */
+.markdown-rendered td,
+.markdown-source-view.mod-cm6 .cm-table-widget td,
+.cm-table td {
+  border-bottom: var(--table-border-width) solid var(--table-border-color);
+  padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
+  vertical-align: middle;
+  font-variant-numeric: tabular-nums;
+}
+
+.markdown-rendered tbody tr:last-child td,
+.markdown-source-view.mod-cm6 .cm-table-widget tbody tr:last-child td {
   border-bottom: none;
 }
-.markdown-rendered tbody tr:nth-child(even) td {
-  background: color-mix(in srgb, var(--background-primary-alt) 55%, transparent);
+
+/* ledger alternating rows */
+.markdown-rendered tbody tr:nth-child(even) td,
+.markdown-source-view.mod-cm6 .cm-table-widget tbody tr:nth-child(even) td {
+  background: var(--table-row-background-even);
 }
-.markdown-rendered td:has(code), .markdown-rendered th:has(code) {
+
+/* table row scanline on hover */
+body.omnia-table-hover .markdown-rendered tbody tr:hover td,
+body.omnia-table-hover .markdown-source-view.mod-cm6 .cm-table-widget tbody tr:hover td,
+.table-hover tbody tr:hover td {
+  background-color: var(--table-row-background-hover);
+}
+
+/* column divider lines */
+body.omnia-table-lines .markdown-rendered th,
+body.omnia-table-lines .markdown-rendered td,
+body.omnia-table-lines .markdown-source-view.mod-cm6 .cm-table-widget th,
+body.omnia-table-lines .markdown-source-view.mod-cm6 .cm-table-widget td,
+.table-lines th,
+.table-lines td {
+  border-right: var(--table-border-width) solid var(--table-border-color);
+}
+body.omnia-table-lines .markdown-rendered th:last-child,
+body.omnia-table-lines .markdown-rendered td:last-child,
+body.omnia-table-lines .markdown-source-view.mod-cm6 .cm-table-widget th:last-child,
+body.omnia-table-lines .markdown-source-view.mod-cm6 .cm-table-widget td:last-child,
+.table-lines th:last-child,
+.table-lines td:last-child {
+  border-right: none;
+}
+
+/* monospace in cells */
+.markdown-rendered td:has(code),
+.markdown-rendered th:has(code),
+.markdown-source-view.mod-cm6 .cm-table-widget td:has(code),
+.markdown-source-view.mod-cm6 .cm-table-widget th:has(code) {
   font-family: var(--omnia-font-mono);
+}
+
+/* Live Preview table widget controls & drag handles */
+.cm-table-widget .table-col-drag-handle,
+.cm-table-widget .table-row-drag-handle,
+.cm-table-widget .table-cell-drag-handle {
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+  background: var(--background-primary-alt);
+  color: var(--text-faint);
+  transition: all var(--anim-duration-fast) var(--anim-motion-baseline);
+}
+.cm-table-widget .table-col-drag-handle:hover,
+.cm-table-widget .table-row-drag-handle:hover,
+.cm-table-widget .table-cell-drag-handle:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.cm-table-widget .table-col-drag-handle.is-dragging,
+.cm-table-widget .table-row-drag-handle.is-dragging {
+  background: var(--color-accent);
+  color: var(--background-primary);
+  border-color: var(--color-accent);
+}
+.cm-table-widget .table-menu-button,
+.cm-table-widget .table-row-btn,
+.cm-table-widget .table-col-btn {
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+  background: var(--background-primary);
+  color: var(--text-muted);
+}
+.cm-table-widget .table-menu-button:hover,
+.cm-table-widget .table-row-btn:hover,
+.cm-table-widget .table-col-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* table helper classes */
+.table-nowrap td, .table-nowrap th {
+  white-space: nowrap;
+}
+.table-compact td, .table-compact th {
+  padding: 0.22em 0.5em;
+  font-size: 0.85em;
+}
+.table-tabular td {
+  font-family: var(--omnia-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.table-wide .table-wrapper,
+.table-wide table {
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 /* ---------- metadata / properties — spec-card ---------- */
@@ -7579,7 +7737,44 @@ body:not(.mod-macos):not(.adaptive-mode-off) .callout {
   border: var(--border-width) solid var(--divider-color);
   border-radius: 0;
   background: var(--background-primary-alt);
-  padding: 0.4em 0.9em;
+  padding: 0.5em 0.9em;
+  margin-bottom: 1.5em;
+  position: relative;
+  transition: border-color var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+body.omnia-spec-metadata .metadata-container::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 28px;
+  height: 2px;
+  background: var(--color-accent);
+}
+.metadata-container:focus-within {
+  border-color: var(--background-modifier-border-hover);
+}
+.metadata-properties-heading {
+  font-family: var(--omnia-font-classify);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-faint);
+  font-weight: 600;
+}
+.metadata-properties-title {
+  font-family: var(--omnia-font-classify);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.metadata-property {
+  border-radius: 0;
+  border-bottom: var(--border-width) solid color-mix(in srgb, var(--divider-color) 60%, transparent);
+  padding: 0.3em 0;
+}
+.metadata-property:last-child {
+  border-bottom: none;
 }
 .metadata-property-key {
   font-family: var(--omnia-font-classify);
@@ -7587,20 +7782,176 @@ body:not(.mod-macos):not(.adaptive-mode-off) .callout {
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--text-faint);
+  font-weight: 500;
+}
+.metadata-property:hover .metadata-property-key {
+  color: var(--text-muted);
 }
 .metadata-property-value {
   font-family: var(--omnia-font-text);
+  font-size: 0.88em;
 }
 .metadata-property .metadata-property-icon {
   --icon-size: var(--icon-s);
   --icon-stroke: 1.5px;
   color: var(--text-faint);
 }
-.metadata-add-button {
+.metadata-property-value input,
+.metadata-input-longtext {
+  border-radius: 0;
+  border: var(--border-width) solid transparent;
+  background: transparent;
+  font-family: var(--omnia-font-text);
+}
+.metadata-property-value input:focus,
+.metadata-input-longtext:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+  background: var(--background-primary);
+}
+.multi-select-pill {
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+  background: var(--background-primary);
   font-family: var(--omnia-font-classify);
   font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  padding: 1px 6px;
+  color: var(--text-muted);
+  transition: border-color var(--anim-duration-fast) var(--anim-motion-baseline);
+}
+.multi-select-pill:hover {
+  border-color: var(--color-accent);
+  color: var(--text-normal);
+}
+.multi-select-pill-remove-button {
+  border-radius: 0;
+  opacity: 0.6;
+}
+.multi-select-pill-remove-button:hover {
+  opacity: 1;
+  color: var(--color-red);
+}
+.metadata-add-button {
+  font-family: var(--omnia-font-classify);
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+  background: var(--background-primary);
+  color: var(--text-muted);
+  padding: 0.25em 0.65em;
+  margin-top: 0.4em;
+  transition: all var(--anim-duration-fast) var(--anim-motion-baseline);
+}
+.metadata-add-button:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Dataview inline fields: [key:: value] */
+.dataview.inline-field, .inline-field {
+  display: inline-flex;
+  align-items: center;
+  border: var(--border-width) solid var(--divider-color);
+  border-radius: 0;
+  background: var(--background-primary-alt);
+  font-size: 0.82em;
+  line-height: 1.25;
+  margin: 0 2px;
+  vertical-align: baseline;
+}
+.dataview.inline-field-key, .inline-field-key {
+  font-family: var(--omnia-font-classify);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.82em;
+  font-weight: 600;
+  color: var(--text-faint);
+  background: color-mix(in srgb, var(--text-normal) 4%, transparent);
+  padding: 1px 5px;
+  border-right: var(--border-width) solid var(--divider-color);
+}
+.dataview.inline-field-value, .inline-field-value {
+  font-family: var(--omnia-font-text);
+  color: var(--text-normal);
+  padding: 1px 6px;
+}
+
+/* ---------- code blocks, banners & math ---------- */
+.cm-s-obsidian pre.HyperMD-codeblock,
+.markdown-rendered pre {
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+  background: var(--background-primary-alt);
+  padding: 0.8em 1em;
+  position: relative;
+}
+body.omnia-code-banner .code-block-flair,
+body.omnia-code-banner .code-block-header {
+  font-family: var(--omnia-font-classify);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  border-radius: 0;
+  padding: 2px 6px;
+  border: var(--border-width) solid var(--divider-color);
+  background: var(--background-primary);
+}
+.copy-code-button {
+  border-radius: 0;
+  font-family: var(--omnia-font-classify);
+  font-size: 0.65rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  border: var(--border-width) solid var(--divider-color);
+  background: var(--background-primary);
+  color: var(--text-muted);
+}
+.copy-code-button:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.math-block, .math-inline, .katex-display {
+  border-radius: 0;
+}
+.math-block {
+  background: var(--background-primary-alt);
+  border-top: var(--border-width) solid var(--divider-color);
+  border-bottom: var(--border-width) solid var(--divider-color);
+  padding: 0.8em 1em;
+  margin: 1.2em 0;
+  overflow-x: auto;
+}
+.katex {
+  font-size: 1.05em;
+}
+
+/* custom machine callout types: spec, terminal, log, register */
+.callout[data-callout="spec"] {
+  --callout-color: var(--color-accent);
+}
+.callout[data-callout="terminal"] {
+  --callout-color: #26a269;
+  background: color-mix(in srgb, #000000 85%, var(--background-primary));
+}
+.callout[data-callout="terminal"] .callout-content {
+  font-family: var(--omnia-font-mono);
+  font-size: 0.88em;
+  color: #33d17a;
+}
+.callout[data-callout="log"] {
+  --callout-color: var(--text-muted);
+}
+.callout[data-callout="log"] .callout-content {
+  font-family: var(--omnia-font-mono);
+  font-size: 0.85em;
+}
+.callout[data-callout="register"] {
+  --callout-color: var(--color-orange);
 }
 
 /* status bar — machine register */
@@ -7720,39 +8071,116 @@ body.is-mobile .nav-item {
   color: var(--text-faint);
 }
 
-/* ---------- Dataview ---------- */
+/* ---------- Dataview & Dataview Cards ---------- */
 .dataview.table-view-table,
 .markdown-rendered .dataview.table-view-table {
   border-collapse: collapse;
   font-family: var(--omnia-font-text);
+  width: 100%;
+  border-top: 1.5px solid var(--text-normal);
+  border-bottom: 1px solid var(--text-normal);
 }
 .dataview.table-view-table thead th {
   font-family: var(--omnia-font-classify);
   text-transform: uppercase;
-  letter-spacing: 0.07em;
-  font-size: 0.72em;
+  letter-spacing: 0.08em;
+  font-size: 0.68rem;
   color: var(--text-muted);
-  border-bottom: 1px solid var(--text-faint);
+  border-bottom: 1px solid var(--text-normal);
   background: var(--background-primary-alt);
+  padding: 0.55em 0.75em;
 }
 .dataview.table-view-table td {
   border-bottom: var(--border-width) solid var(--divider-color);
-  padding: 0.35em 0.6em;
+  padding: 0.45em 0.75em;
+  font-variant-numeric: tabular-nums;
+}
+.dataview.table-view-table tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--background-primary-alt) 55%, transparent);
+}
+body.omnia-table-hover .dataview.table-view-table tbody tr:hover td {
+  background-color: color-mix(in srgb, var(--color-accent) 6%, var(--background-primary-alt));
 }
 .dataview.list-view-ul,
 .dataview.result-list-root-ul {
   padding-left: 1.2em;
 }
-.dataview.inline-field-value,
-.dataview.inline-field-key {
+.dataview-pagination {
   font-family: var(--omnia-font-classify);
-  font-size: 0.72em;
+  font-size: 0.72rem;
   letter-spacing: 0.05em;
-  color: var(--text-faint);
+  text-transform: uppercase;
+  margin: 1em 0;
 }
-.dataview.inline-field-value {
+.dataview-pagination button {
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+  background: var(--background-primary-alt);
   color: var(--text-muted);
 }
+.dataview-pagination button:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Machine-geometric Cards for Dataview and query lists (.cards and .list-cards) */
+.cards table.dataview tbody {
+  display: grid;
+  grid-template-columns: var(--cards-columns);
+  gap: 12px;
+  padding: 0;
+}
+.cards table.dataview tbody tr {
+  display: flex;
+  flex-direction: column;
+  border: var(--border-width) solid var(--divider-color);
+  border-radius: 0;
+  background: var(--background-primary-alt);
+  padding: 10px 12px;
+  transition: border-color var(--anim-duration-fast) var(--anim-motion-baseline),
+              box-shadow var(--anim-duration-fast) var(--anim-motion-baseline);
+}
+.cards table.dataview tbody tr:hover {
+  border-color: var(--color-accent);
+  box-shadow: inset 0 0 0 1px var(--color-accent);
+}
+.cards table.dataview tbody tr td {
+  border: none;
+  padding: 2px 0;
+  font-family: var(--omnia-font-text);
+}
+.cards table.dataview tbody tr td:first-child {
+  font-family: var(--omnia-font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.cards table.dataview tbody tr td:has(img) {
+  padding: 0;
+  margin: -10px -12px 8px -12px;
+  overflow: hidden;
+  border-bottom: var(--border-width) solid var(--divider-color);
+}
+.cards table.dataview tbody tr td img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 0;
+}
+.cards-compact table.dataview tbody tr {
+  padding: 6px 8px;
+}
+.cards-cover table.dataview tbody tr td:has(img) img {
+  height: 180px;
+}
+.cards-16-9 table.dataview tbody tr td:has(img) img {
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+.cards-cols-2 { --cards-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.cards-cols-3 { --cards-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.cards-cols-4 { --cards-columns: repeat(auto-fit, minmax(160px, 1fr)); }
 
 /* ---------- Tasks (obsidian-tasks) ---------- */
 .task-list-item {
@@ -7778,6 +8206,48 @@ body.is-mobile .nav-item {
   letter-spacing: 0.05em;
   color: var(--text-muted);
 }
+.tasks-modal {
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+}
+.tasks-modal .modal-title {
+  font-family: var(--omnia-font-classify);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.tasks-modal input,
+.tasks-modal select,
+.tasks-modal textarea {
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+}
+.tasks-modal input:focus,
+.tasks-modal select:focus,
+.tasks-modal textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+.task-priority-highest,
+.task-priority-high {
+  color: var(--color-red);
+}
+.task-priority-medium {
+  color: var(--color-orange);
+}
+.task-priority-low,
+.task-priority-lowest {
+  color: var(--color-blue);
+}
+.task-scheduled,
+.task-due,
+.task-done,
+.task-created {
+  font-family: var(--omnia-font-classify);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+}
 
 /* ---------- Bases (core) ---------- */
 .bases-table-view thead th,
@@ -7786,6 +8256,25 @@ body.is-mobile .nav-item {
   text-transform: uppercase;
   letter-spacing: 0.07em;
   font-size: 0.72em;
+}
+.bases-toolbar,
+.bases-filter-bar {
+  font-family: var(--omnia-font-classify);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: var(--border-width) solid var(--divider-color);
+}
+.bases-toolbar button,
+.bases-filter-bar button {
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+  background: var(--background-primary-alt);
+}
+.bases-toolbar button:hover,
+.bases-filter-bar button:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 /* ---------- Canvas (core) ---------- */
@@ -7922,5 +8411,229 @@ body .kanban-plugin.something-is-dragging {
 .excalidraw.theme--dark {
   --accent-l: 60%;
 }
+
+/* ---------- Obsidian Projects (marcusolsson/obsidian-projects) ---------- */
+.project-view {
+  font-family: var(--omnia-font-interface);
+}
+.project-view .project-nav,
+.project-view .project-tabs {
+  font-family: var(--omnia-font-classify);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  border-bottom: var(--border-width) solid var(--divider-color);
+}
+.project-view .project-tab {
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+}
+.project-view .project-tab.is-active {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.projects-table th {
+  font-family: var(--omnia-font-classify);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.68rem;
+  background: var(--background-primary-alt);
+  border-bottom: 1px solid var(--text-normal);
+}
+.projects-table td {
+  border-bottom: var(--border-width) solid var(--divider-color);
+}
+.projects-board .project-board-column {
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+  background: var(--background-secondary);
+}
+.projects-board .project-board-column-header {
+  font-family: var(--omnia-font-classify);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  border-bottom: var(--border-width) solid var(--divider-color);
+}
+.projects-board .project-board-card,
+.projects-gallery .project-gallery-card {
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+  background: var(--background-primary);
+  box-shadow: none;
+}
+.projects-board .project-board-card:hover,
+.projects-gallery .project-gallery-card:hover {
+  border-color: var(--color-accent);
+}
+
+/* ---------- Hover Editor (nothingislost/obsidian-hover-editor) ---------- */
+.popover.hover-editor {
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.22);
+}
+.popover.hover-editor .popover-titlebar {
+  font-family: var(--omnia-font-classify);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 0;
+  background: var(--background-primary-alt);
+  border-bottom: var(--border-width) solid var(--divider-color);
+  padding: 0.35em 0.8em;
+}
+.popover.hover-editor .popover-actions .clickable-icon {
+  border-radius: 0;
+}
+.popover.hover-editor .popover-actions .clickable-icon:hover {
+  color: var(--color-accent);
+}
+
+/* ---------- Note Toolbar (chrisgurney/obsidian-note-toolbar) ---------- */
+.callout[data-callout="note-toolbar"],
+.cg-note-toolbar-container {
+  background: var(--background-primary-alt);
+  border: var(--border-width) solid var(--divider-color);
+  border-radius: 0;
+  padding: 2px 6px;
+  box-shadow: none;
+}
+.cg-note-toolbar-items .cg-note-toolbar-item {
+  border-radius: 0;
+  font-family: var(--omnia-font-classify);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.cg-note-toolbar-items .cg-note-toolbar-item:hover {
+  background: var(--background-modifier-hover);
+  color: var(--color-accent);
+}
+
+/* ---------- QuickAdd (chhoumann/quickadd) ---------- */
+.quickadd-modal,
+.quickAddModal {
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+}
+.quickadd-modal .modal-title,
+.quickAddModal .modal-title {
+  font-family: var(--omnia-font-classify);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.quickadd-modal input[type="text"],
+.quickAddModal input[type="text"] {
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+}
+.quickadd-modal input[type="text"]:focus,
+.quickAddModal input[type="text"]:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+.quickadd-modal .suggestion-item,
+.quickAddModal .suggestion-item {
+  border-radius: 0;
+  font-family: var(--omnia-font-interface);
+}
+
+/* ---------- Templater (SilentVoid13/Templater) ---------- */
+.templater-modal {
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+}
+.templater-modal .modal-title {
+  font-family: var(--omnia-font-classify);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---------- Contribution Graph (vran-dev/obsidian-contribution-graph) ---------- */
+.contribution-graph,
+.contribution-graph-container {
+  font-family: var(--omnia-font-classify);
+}
+.contribution-graph .cell,
+.contribution-graph-container .cell {
+  border-radius: 0;
+}
+.contribution-graph text,
+.contribution-graph-container text {
+  font-family: var(--omnia-font-classify);
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  fill: var(--text-faint);
+}
+
+/* ---------- Outliner (vslinko/obsidian-outliner) ---------- */
+.outliner-plugin-bullet {
+  border-radius: 0;
+}
+.outliner-plugin-guide {
+  border-left-width: var(--border-width);
+  border-left-color: var(--divider-color);
+}
+
+/* ---------- Breadcrumbs (SkepticMystic/breadcrumbs) ---------- */
+.BC-trail,
+.breadcrumbs-trail {
+  font-family: var(--omnia-font-classify);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: var(--border-width) solid var(--divider-color);
+  background: var(--background-primary-alt);
+  padding: 3px 8px;
+  border-radius: 0;
+}
+.BC-trail .internal-link,
+.breadcrumbs-trail .internal-link {
+  color: var(--text-muted);
+}
+.BC-trail .internal-link:hover,
+.breadcrumbs-trail .internal-link:hover {
+  color: var(--color-accent);
+}
+
+/* ---------- Supercharged Links (mdelobelle/obsidian-supercharged-links) ---------- */
+.data-link-icon,
+.data-link-icon-after {
+  font-size: 0.8em;
+  opacity: 0.8;
+  vertical-align: middle;
+}
+.data-link-text {
+  letter-spacing: inherit;
+}
+
+/* ---------- Book Search & Media DB ---------- */
+.book-search-modal,
+.media-db-modal {
+  border-radius: 0;
+  border: var(--border-width) solid var(--divider-color);
+}
+.book-search-modal .modal-title,
+.media-db-modal .modal-title {
+  font-family: var(--omnia-font-classify);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.book-search-item,
+.media-db-item {
+  border-radius: 0;
+  border-bottom: var(--border-width) solid var(--divider-color);
+}
+.book-search-item:hover,
+.media-db-item:hover {
+  background: var(--background-modifier-hover);
+}
+
 /* ---------- Publish-safe fallback for plugin-less environments ---------- */
 /* nothing here — all rules are class-scoped and inert when plugins absent */

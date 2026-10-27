@@ -34,15 +34,38 @@ The theme reads any installed matching family names automatically; font names ar
 
 ## Style Settings
 
-38 settings in 5 groups (requires the [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) plugin):
+43 settings in 5 groups (requires the [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) plugin):
 
 - **Typography** — per-role font-family overrides, measure
-- **Surfaces** — radius, density, line width, machine tags, heading rules, Grenadier headings, Signal accent preset
+- **Surfaces** — radius, density, line width, machine tags, sticky table headers, table grid lines, row scanlines, codeblock language banners, spec-card metadata, heading rules, Grenadier headings, Signal accent preset
 - **Chrome & desktop** — titlebar, tabs, status bar treatments
 - **Editor** — line numbers, guides, cursor, selection behavior
 - **Accessibility** — contrast and motion accommodations
 
 **Signal accent** re-maps the accent hue globally — links, tags, list markers, checkboxes, active states — in both themes: Grenadier (default), Cobalt, Amber, Viridian.
+
+## Tables & Helper Classes
+
+The theme implements an architectural ledger table system with sticky headers, alternating row striping, hover scanlines, and tabular figures. You can customize table behavior per-note via frontmatter `cssclasses:`
+
+| Class | Effect |
+|---|---|
+| `table-lines` | Hairline vertical grid dividers between columns |
+| `table-striped` | Force ledger zebra striping across alternating rows |
+| `table-sticky` | Pin headers to top during vertical scroll |
+| `table-tabular` | Enforce full monospace tabular figures for numeric data |
+| `table-nowrap` | Prevent cell line wrapping for compact technical sheets |
+| `table-compact` | Dense cell padding (0.22em / 0.5em) |
+| `table-wide` | Expand table to full container width |
+
+## Machine Callouts
+
+In addition to Obsidian's default callout types, Omnia Ex Machina includes machine-specific plates:
+
+- `> [!spec]` — Blueprint specsheet with accent rail
+- `> [!terminal]` — Phosphor CRT terminal block with green monospace prompt
+- `> [!log]` — Telemetry & event ledger in monospace
+- `> [!register]` — System status & memory register with amber indicator
 
 ## Plugin integrations
 
@@ -50,16 +73,26 @@ Passive, class-scoped rules — applied only when the plugin is present, inert o
 
 | Plugin | Integration |
 |---|---|
+| Dataview | Ledger tables, pagination buttons, inline fields `[key:: value]`, full `.cards` & `.list-cards` support |
+| Obsidian Projects | Squared view tabs, ledger tables, hairline kanban columns, gallery cards |
+| Hover Editor | Framed popover window, squared corners, hairline titlebar, classify titles |
+| Note Toolbar | Flat machine dock callout, square icon buttons with signal hover states |
+| QuickAdd | Squared prompt modals, classify headers, hairline list dividers |
+| Templater | Machine prompt modals and square inputs |
+| Contribution Graph | Square heatmap cells, classify month/day labels, phosphor accents |
+| Outliner | Hairline indentation guides, crisp square bullet registration |
+| Breadcrumbs | Classify trail chips, hairline borders, signal link hovers |
+| Supercharged Links | Crisp metadata icons and attribute pills |
+| Tasks | Per-status accent checkboxes, modal forms, priority colors, date chips |
+| Kanban | Squared lanes/cards, classify lane titles, accent drag ring |
+| Bases | Hairline table chrome, query and filter toolbar controls |
+| Book Search / Media DB | Squared modal dialogs, book covers, classify metadata tags |
 | Iconic | `extras/iconic-preset.json` icon set (see below) |
-| Calendar | machine register for the calendar pane |
-| Dataview + cards helpers | squared tables, classify headers |
-| Tasks | per-status accent checkboxes on squared boxes |
-| Bases | hairline table chrome |
-| Canvas | classify edge labels, squared nodes |
-| Kanban | squared lanes/cards, classify lane titles, accent drag ring |
-| Omnisearch | squared modal/results, classify metadata, accent highlight |
-| Charts | squared canvas frame |
-| Excalidraw | dark-scheme accent lift |
+| Calendar | Machine register for the calendar pane |
+| Canvas | Classify edge labels, squared nodes |
+| Omnisearch | Squared modal/results, classify metadata, accent highlight |
+| Charts | Squared canvas frame |
+| Excalidraw | Dark-scheme accent lift |
 
 ### Iconic preset
 
@@ -76,6 +109,8 @@ Fully responsive: callouts, Kanban, and settings surfaces adapt under `is-mobile
 If you enjoy Omnia Ex Machina and want to support ongoing development:
 
 <a href="https://www.buymeacoffee.com/tuliopc23" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 48px !important;width: 174px !important;" ></a>
+
+Support Tulio Cunha on Buy Me a Coffee: **[buymeacoffee.com/tuliopc23](https://www.buymeacoffee.com/tuliopc23)**
 
 ## Credits
  
